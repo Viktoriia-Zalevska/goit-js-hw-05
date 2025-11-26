@@ -1,22 +1,30 @@
-function slugify(title) {
-  // 1. Приводимо весь рядок до нижнього регістру (вимога 2).
-  const lowerCaseTitle = title.toLowerCase();
+function isEnoughCapacity(products, containerSize) {
+  // 1. Змінна для збереження загальної кількості товарів
+  let totalQuantity = 0;
 
-  // 2. Розбиваємо рядок на масив слів, використовуючи пробіл як роздільник.
-  // Завдання гарантує, що слова розділені лише пробілами (вимога 1).
-  const words = lowerCaseTitle.split(' ');
+  // 2. Отримуємо масив значень (кількості) з об'єкта products
+  const quantities = Object.values(products);
 
-  // 3. Об'єднуємо слова масиву назад у рядок, використовуючи тире (-) як роздільник (вимога 3).
-  const slug = words.join('-');
+  // 3. Проходимо по масиву та додаємо кожне число до загальної суми
+  for (const amount of quantities) {
+    totalQuantity += amount;
+  }
 
-  // 4. Повертаємо готовий slug.
-  return slug;
+  // 4. Повертаємо true, якщо сума менша або дорівнює containerSize, інакше false
+  return totalQuantity <= containerSize;
 }
 
-// Виклики для перевірки коректності роботи
+// Перевірка роботи функції 
+console.log(
+  isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)
+); 
 
-console.log(slugify("Arrays for beginners")); // "arrays-for-beginners"
-console.log(slugify("English for developer")); // "english-for-developer"
-console.log(slugify("Ten secrets of JavaScript")); // "ten-secrets-of-javascript"
-console.log(slugify("How to become a JUNIOR developer in TWO WEEKS")); // "how-to-become-a-junior-developer-in-two-weeks"
-
+console.log(
+  isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)
+); 
+console.log(
+  isEnoughCapacity({ apples: 1, lime: 5, tomatoes: 3 }, 14)
+); 
+console.log(
+  isEnoughCapacity({ apples: 18, potatoes: 5, oranges: 2 }, 7)
+); 
