@@ -1,29 +1,58 @@
-const profile = {
-  username: "Jacob",
-  playTime: 300,
+//Функція повертатaє масив усіх користувачів, відсортованих за спаданням кількостій їх друзів (властивість friends).
+const sortByDescendingFriendCount = (users) =>
+  [...users].sort(
+    (firstUser, secondUser) =>
+      secondUser.friends.length - firstUser.friends.length
+  );
+//Приклад виклику функції:
+const sortByDescendingFriendCount = (users) =>
+  [...users].sort(
+    (firstUser, secondUser) =>
+      secondUser.friends.length - firstUser.friends.length
+  );
 
-  // Метод 1: Змінює ім'я користувача
-  changeUsername(newName) {
-    this.username = newName;
+const users = [
+  {
+    name: "Moore Hensley",
+    friends: ["Sharron Pace", "Boyle Dunn"], // 2
   },
-
-  // Метод 2: Оновлює час у грі (додає години до поточного значення)
-  updatePlayTime(hours) {
-    this.playTime += hours;
+  {
+    name: "Sharlene Bush",
+    friends: ["Briana Decker", "Sharron Pace", "Sheree Anthony"], // 3
   },
+  {
+    name: "Ross Vazquez",
+    friends: ["Marilyn Foutz", "Sharron Pace", "Kelly Bell", "Elma Head"], // 4
+  },
+  {
+    name: "Elma Head",
+    friends: ["Marilyn Foutz", "Sharron Pace", "Kelly Bell"], // 3
+  },
+  {
+    name: "Carey Barr",
+    friends: ["Marilyn Foutz", "Sharron Pace"], // 2
+  },
+  {
+    name: "Blackburn Dotson",
+    friends: ["Jacklyn Lucas", "Sharron Pace"], // 2
+  },
+  {
+    name: "Sheree Anthony",
+    friends: ["Jacklyn Lucas", "Sharron Pace", "Elma Head", "Moore Hensley"], // 4
+  },
+];
 
-  // Метод 3: Повертає рядок з інформацією
-  getInfo() {
-    return `${this.username} has ${this.playTime} active hours!`;
-  }
-};
+console.log(sortByDescendingFriendCount(users));
+/*
+[
+  { name: 'Ross Vazquez', friends: [ 'Marilyn Foutz', 'Sharron Pace', 'Kelly Bell', 'Elma Head' ] }, // 4
+  { name: 'Sheree Anthony', friends: [ 'Jacklyn Lucas', 'Sharron Pace', 'Elma Head', 'Moore Hensley' ] }, // 4
+  { name: 'Sharlene Bush', friends: [ 'Briana Decker', 'Sharron Pace', 'Sheree Anthony' ] }, // 3
+  { name: 'Elma Head', friends: [ 'Marilyn Foutz', 'Sharron Pace', 'Kelly Bell' ] }, // 3
+  { name: 'Moore Hensley', friends: [ 'Sharron Pace', 'Boyle Dunn' ] }, // 2
+  { name: 'Carey Barr', friends: [ 'Marilyn Foutz', 'Sharron Pace' ] }, // 2
+  { name: 'Blackburn Dotson', friends: [ 'Jacklyn Lucas', 'Sharron Pace' ] } // 2
+]
+*/
 
-
-// Перевірка роботи методів
-console.log(profile.getInfo()); // "Jacob has 300 active hours!"
-
-profile.changeUsername("Marco");
-console.log(profile.getInfo()); // "Marco has 300 active hours!"
-
-profile.updatePlayTime(20);
-console.log(profile.getInfo()); // "Marco has 320 active hours!"
+console.log(users); // Перевірка імутабельності (вихідний масив не змінений)
