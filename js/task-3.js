@@ -1,6 +1,6 @@
 //Функція повертатaє масив усіх користувачів, відсортованих за спаданням кількостій їх друзів (властивість friends).
 const sortByDescendingFriendCount = (users) =>
-  [...users].sort(
+  users.toSorted(
     (firstUser, secondUser) =>
       secondUser.friends.length - firstUser.friends.length
   );
