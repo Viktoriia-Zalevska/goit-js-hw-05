@@ -6,10 +6,6 @@ const getTotalBalanceByGender = (users, gender) =>
     .reduce((totalBalance, user) => totalBalance + user.balance, 0);
 
 //Приклад виклику функції:
-const getTotalBalanceByGender = (users, gender) =>
-  users
-    .filter((user) => user.gender === gender)
-    .reduce((totalBalance, user) => totalBalance + user.balance, 0);
 
 const users = [
   {

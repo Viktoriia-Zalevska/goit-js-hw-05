@@ -5,11 +5,6 @@ const sortByDescendingFriendCount = (users) =>
       secondUser.friends.length - firstUser.friends.length
   );
 //Приклад виклику функції:
-const sortByDescendingFriendCount = (users) =>
-  [...users].sort(
-    (firstUser, secondUser) =>
-      secondUser.friends.length - firstUser.friends.length
-  );
 
 const users = [
   {
